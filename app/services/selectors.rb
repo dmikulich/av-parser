@@ -1,0 +1,15 @@
+module Selectors
+  LINK        = '//h4/a[@href]'
+  COUNTER     = '//h1[@class="heading-title"]'
+  SUB_COUNTER = '//p[@class="heading-side"]'
+  BRAND       = '//li[@class="breadcrumb-item"]/a[@class="breadcrumb-link"]'
+  MODEL       = '//li[@class="breadcrumb-item breadcrumb-back"]/a[@class="breadcrumb-link"]'
+  YEAR        = '//div[@class="card-info"]//dl/dt[text()="Год выпуска"]/../dd'
+  MILEAGE     = '//div[@class="card-info"]//dl/dt[text()="Пробег"]/../dd'
+  PRICE       = '//span[@class="card-price-main-primary"]'
+  PLACE       = '//h4[@class="card-contacts-city"]'
+  CONTACT     = '//h3[@class="card-contacts-name"]'
+  PHONE       = '//a[@class="modal-choice-link"]'
+  VIEWS       = '//span[@class="card-views"]'
+  DATE        = '//li[@class="card-about-item card-about-item-dates"]/dl/dd'
+end

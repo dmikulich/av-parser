@@ -1,0 +1,40 @@
+<h1 class="display-4 text-center">AV ads <%=@objects.count %></h1>
+<div class="table-responsive">
+  <table class="table table-hover table-sm ">
+    <thead class="thead-light">
+    <tr>
+      <th class="text-center">Auto</th>
+      <th class="text-center">Brand</th>
+      <th class="text-center">Model</th>
+      <th class="text-center">Year</th>
+      <th class="text-center">Mileage</th>
+      <th class="text-center">Price</th>
+      <th class="text-center">Place</th>
+      <th class="text-center">Name</th>
+      <th class="text-center">Phone</th>
+      <th class="text-center width-120" ">Date</th>
+      <th class="text-center">Views</th>
+      <th class="text-center">Source link</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @objects.each do |object| %>
+      <tr>
+        <td><%= object.auto[:full_name] %></td>
+        <td class="text-center"><%= object.auto[:brand] %></td>
+        <td class="text-center"><%= object.auto[:model] %></td>
+        <td class="text-center"><%= object.auto[:year] %></td>
+        <td class="text-right"><%= object.auto[:mileage] %></td>
+        <td class="text-right"><%= object[:price] %></td>
+        <td class="text-center"><%= object[:place] %></td>
+        <td class="text-center"><%= object.seller[:name] %></td>
+        <td class="text-center phone-number" title="<%= object.seller[:phone_number] %>"><%= object.seller[:phone_number] %></td>
+        <td class="text-center"><%= object[:ad_date] %></td>
+        <td class="text-center"><%= object[:views] %></td>
+        <td class="text-center" title="<%= object[:link] %>"><span><%= link_to "Source", object[:link] %></span></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<%= will_paginate @objects, previous_label: h("<"), next_label: h(">") %>
