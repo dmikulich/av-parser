@@ -1,3 +1,3 @@
 class Seller < ApplicationRecord
-  has_many :ads #, dependent: destroy
+  has_many :ads
 end

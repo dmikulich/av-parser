@@ -1,0 +1,96 @@
+.phone-number
+  a
+    color: #777
+    font-size: 14px
+    border-bottom: 1px dotted
+  a:hover
+    color: #e34065
+    text-decoration: none
+
+.width-120
+  width: 120px
+
+.width-95
+  width: 95px
+
+.width-150
+  width: 150px
+
+.width-400
+  width: 400px
+
+.pad-15
+  padding-left: 15px !important
+
+.pagination
+  background: white
+  cursor: default
+  justify-content: center
+  a, span, em
+    padding: 0.2em 0.5em
+    display: block
+    margin-right: 1px
+  .disabled
+    color: #999999
+    border: 1px solid #dddddd
+  .current
+    font-style: normal
+    font-weight: bold
+    background: #2e6ab1
+    color: white
+    border: 1px solid #2e6ab1
+  a
+    text-decoration: none
+    color: #105cb6
+    border: 1px solid #9aafe5
+    &:hover, &:focus
+      color: #000033
+      border-color: #000033
+  .page_info
+    background: #2e6ab1
+    color: white
+    padding: 0.4em 0.6em
+    width: 22em
+    margin-bottom: 0.3em
+    text-align: center
+    b
+      color: #000033
+      background: #2e6ab1 + 60
+      padding: 0.1em 0.25em
+  /* self-clearing method:
+  &:after
+    content: "."
+    display: block
+    height: 0
+    clear: both
+    visibility: hidden
+  * html &
+    height: 1%
+  *:first-child+html &
+    overflow: hidden
+
+.pre-wrap
+  white-space: pre-wrap
+
+.auto-th
+  display: flex
+  justify-content: space-around
+
+th
+  vertical-align: middle !important
+
+input#search
+  width: 200px
+
+form#product_search
+  display: flex
+
+td
+  word-wrap: break-word
+  white-space: nowrap
+  text-overflow: ellipsis
+  overflow: hidden
+
+.table
+  table-layout: fixed
+  width: 100%

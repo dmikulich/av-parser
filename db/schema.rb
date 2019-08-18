@@ -10,31 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190814073337) do
+ActiveRecord::Schema.define(version: 20190818201135) do
 
   create_table "ads", force: :cascade do |t|
     t.integer  "seller_id"
+    t.integer  "place_id"
     t.string   "link"
     t.float    "price"
-    t.string   "place"
     t.date     "ad_date"
     t.integer  "views"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["seller_id"], name: "index_ads_on_seller_id"
   end
 
   create_table "autos", force: :cascade do |t|
     t.integer  "ad_id"
+    t.integer  "model_id"
     t.string   "full_name"
-    t.string   "brand"
-    t.string   "model"
     t.integer  "year"
     t.string   "mileage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ad_id"], name: "index_autos_on_ad_id"
-    t.index ["brand"], name: "index_autos_on_brand"
+    t.index ["full_name"], name: "index_autos_on_full_name"
+  end
+
+  create_table "brands", force: :cascade do |t|
+    t.string   "brand"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "models", force: :cascade do |t|
+    t.integer  "brand_id"
+    t.string   "model"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string   "place"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sellers", force: :cascade do |t|

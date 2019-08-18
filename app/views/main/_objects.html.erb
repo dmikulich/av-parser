@@ -1,0 +1,71 @@
+<div id="objects">
+  <div class="table-responsive">
+    <table class="table table-hover table-sm ">
+      <thead class="thead-light">
+      <tr>
+        <th class="text-center width-400">
+          <div class="auto-th">
+          <span>Auto</span>
+          <span>
+          <%= form_tag root_path, :method => 'get', :id => "product_search " do %>
+            <%= hidden_field_tag :direction, params[:direction] %>
+              <%= hidden_field_tag :sort, params[:sort] %>
+              <%= text_field_tag :search, params[:search] %>
+              <button id="search-btn">Search</button>
+          <% end %>
+        </span>
+          </div>
+        </th>
+        <th class="text-center width-95">Brand</th>
+        <th class="text-center width-95">Model</th>
+        <th class="text-center width-95" title="Sort"><%= sortable("autos", "year", "Year") %></th>
+        <th class="text-center width-95">Mileage</th>
+        <th class="text-center width-95" title="Sort"><%= sortable("ads", "price", "Price") %></th>
+        <th class="text-center">Place</th>
+        <th class="text-center">Name</th>
+        <th class="text-center width-150">Phone</th>
+        <th class="text-center width-120" title="Sort"><%= sortable("ads", "ad_date", "Date") %></th>
+        <th class="text-center width-95" title="Sort"><%= sortable("ads", "views", "Views") %></th>
+        <th class="text-center width-120">Source link</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @objects.each do |object| %>
+        <tr>
+          <td class="pad-15" title="<%= object[:full_name] %>"><%= object[:full_name] %></td>
+          <td class="text-center"><%= object.model.brand[:brand] %></td>
+          <td class="text-center"><%= object.model[:model] %></td>
+          <td class="text-center"><%= object[:year] %></td>
+          <td class="text-right"><%= object[:mileage] %></td>
+          <td class="text-right"><%= number_with_delimiter(object.ad[:price], delimiter: " ", separator: ".") %></td>
+          <td class="text-center" title="<%= object.ad.place[:place] %>"><%= object.ad.place[:place] %></td>
+          <td class="text-center" title="<%= object.ad.seller[:name] %>"><%= object.ad.seller[:name] %></td>
+          <td class="text-center pre-wrap"><span class="phone-number" id="span-<%=object.ad.seller[:id]%>"><%= object.ad.seller[:phone_number].truncate(10) %> <%= link_to "show full", nil, {id: object.ad.seller[:id]}%></span></td>
+          <td class="text-center"><%= object.ad[:ad_date] %></td>
+          <td class="text-center"><%= number_with_delimiter(object.ad[:views], delimiter: " ", separator: ".") %></td>
+          <td class="text-center" title="<%= object.ad[:link] %>"><span><%= link_to "Source", object.ad[:link] %></span></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= will_paginate @objects, previous_label: h("<"), next_label: h(">") %>
+</div>
+
+<script>
+    $(".phone-number a").click(function(e) {
+        e.preventDefault();
+        const seller_id = this.id;
+        const selected_node = this;
+
+        $.ajax({
+            url: "/phone_number",
+            method: 'GET',
+            format: JSON,
+            data: {id: seller_id},
+            success: function (data) {
+                $(selected_node).parent().replaceWith(data.phone);
+            }
+        })
+    })
+</script>
