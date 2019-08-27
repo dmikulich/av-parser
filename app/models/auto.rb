@@ -4,7 +4,7 @@ class Auto < ApplicationRecord
 
   def self.search(search)
     if search
-      where('full_name LIKE ?', "%#{search}%")
+      where('lower(full_name) LIKE ?', ("%#{search.downcase}%"))
     else
       all
     end
